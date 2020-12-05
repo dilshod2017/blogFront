@@ -1,1 +1,20 @@
 <p>dialog works!</p>
+<div class="dialog__window" *ngIf="dialogOptions">
+  <div class="dialog__window__header">
+    <span class="dialog__window__title">{{dialogOptions?.title}}</span>
+  </div>
+  <div class="dialog__window__body">{{dialogOptions?.text}}</div>
+  <div class="dialog__window__footer">
+    <button [class]="'dialog__button dialog__button--'+dialogOptions?.okButton?.color"
+            (click)="onOkClick()"
+    >
+      {{dialogOptions?.okButton?.name}}
+    </button>
+    <button [class]="'dialog__button dialog__button--'+dialogOptions?.cancelButton.color"
+            (click)="onCancelClick()"
+    >
+      {{dialogOptions?.cancelButton?.name}}
+    </button>
+  </div>
+</div>
+<div class="dialog__overlay" (click)="onOverlayClick()"></div>
