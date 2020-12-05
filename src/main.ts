@@ -7,6 +7,8 @@ import { environment } from './environments/environment';
 if (environment.production) {
   enableProdMode();
 }
-
-platformBrowserDynamic().bootstrapModule(AppModule)
+//here is the base ground model
+platformBrowserDynamic().bootstrapModule(AppModule).catch(e=>{
+  console.error(e)
+})
   .catch(err => console.error(err));

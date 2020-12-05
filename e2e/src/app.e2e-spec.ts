@@ -5,6 +5,8 @@ describe('workspace-project App', () => {
   let page: AppPage;
 
   beforeEach(() => {
+    console.log("DONT FORGET TO ADD TEST HERE");
+    
     page = new AppPage();
   });
 
