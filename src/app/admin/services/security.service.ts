@@ -4,6 +4,9 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class SecurityService {
-
+  isAuthenticated = () :boolean => true;
+  currentUser = {
+    isAdmin:true
+  }
   constructor() { }
 }

@@ -4,7 +4,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { LandingRootComponent } from './landing-root/landing-root.component';
 import { RouterModule } from '@angular/router';
-import { routing } from './routes';
+import { homeRouting } from './routes';
 
 
 
@@ -12,7 +12,7 @@ import { routing } from './routes';
   declarations: [LandingPageComponent, LandingRootComponent],
   imports: [
     RouterModule,
-    routing,
+    homeRouting,
     CommonModule
   ],
   bootstrap:[LandingRootComponent]
