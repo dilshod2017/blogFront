@@ -1,0 +1,19 @@
+<div class="segment">
+  <div class="segment__header"
+    (click)="toggleCollapse()"
+  >
+    {{title}}
+    <span
+    class="icon"
+    [ngClass]="{
+      'icon-right-open':!isCollapsed,
+      'icon-down':isCollapsed
+    }"
+    ></span>
+  </div>
+  <div class="segment__body"
+    [@toggle]="state"
+  >
+  <ng-content></ng-content>
+  </div>
+</div>

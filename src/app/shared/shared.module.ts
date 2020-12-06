@@ -3,12 +3,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppSettingsService } from './services/app-settings.service';
+import { CollpsibleSectionComponent } from './collpsible-section/collpsible-section.component';
 
 
 
 @NgModule({
 
-  declarations: [],
+  declarations: [CollpsibleSectionComponent],
   imports: [
     HttpClientModule,
     CommonModule
@@ -17,6 +18,7 @@ import { AppSettingsService } from './services/app-settings.service';
     AppSettingsService
   ],
   exports:[
+    CollpsibleSectionComponent
   ]
 })
 export class SharedModule { }
