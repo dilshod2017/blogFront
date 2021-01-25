@@ -8,3 +8,9 @@ type DialogOptions = {
     name:string, color?:string, callback?:()=>void
   }
 }
+type PostDisplay = {
+  postId:number,
+  postTitle:string,
+  likesCount:number,
+  commentsCount:number
+}

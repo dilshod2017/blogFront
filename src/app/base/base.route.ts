@@ -23,19 +23,19 @@ const routes: Routes = [
         pathMatch:'full',
         loadChildren: ()=> import("../home/home.module").then(m=>m.HomeModule),
         data:{preload:false},
-        canActivate:[AuthGuardService]
+        // canActivate:[AuthGuardService]
       },
       {
         path:"admin",
         loadChildren: ()=> import("../admin/admin.module").then(m=>m.AdminModule),
         data:{preload:false},
-        canActivate:[AuthGuardService]
+        // canActivate:[AuthGuardService]
       },
       {
         path:"blog",
         loadChildren: ()=> import("../blog/blog.module").then(m=>m.BlogModule),
         data:{preload:true},
-        canActivate:[AuthGuardService]
+        // canActivate:[AuthGuardService]
       }
     ]
   }

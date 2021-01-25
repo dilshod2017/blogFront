@@ -1,5 +1,8 @@
 import { animate, animation, state, style, transition, trigger } from '@angular/animations';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { combineLatest, pipe, Subscription } from 'rxjs';
+import { filter, mergeAll, takeUntil, takeWhile, tap } from 'rxjs/operators';
+import { GlobalBussService } from '../services/global-buss.service';
 
 @Component({
   selector: 'app-collpsible-section',
@@ -23,14 +26,45 @@ import { Component, Input, OnInit } from '@angular/core';
     )
   ]
 })
-export class CollpsibleSectionComponent implements OnInit {
+export class CollpsibleSectionComponent implements OnInit, OnDestroy {
   @Input() title:string;
+  @Input() id:string;
+  @Input() sectionName:string;
   state:string;
-  constructor() { }
-
+  subscriptions:Subscription[];
+  constructor(private globalBus:GlobalBussService) { }
+  ngOnDestroy(): void {
+    this.subscriptions?.forEach(s=>s.unsubscribe());
+  }
+  globalcollapsibleSectionClose:string;
+  collapsibleSectionClose:string;
   ngOnInit(): void {
     this.state = 'opened';
+    this.subscriptions = [
+      combineLatest([this.globalBus.globalcollapsibleSectionClose,this.globalBus.collapsibleSectionClose]).
+        pipe(
+         mergeAll(),
+         tap(x=>{
+           if(!!x && x !== this.globalcollapsibleSectionClose ||
+                     x !== this.collapsibleSectionClose){
+             this.state = 'closed';
+           }
+         })
+        )
+        .subscribe()
+      // this.globalBus.collapsibleSectionClose.pipe(
+      //   filter(x => !!x && x === this.id)
+      // ).subscribe(id=>{
+      //     this.state = 'closed';
+      // }),
+      // this.globalBus.globalcollapsibleSectionClose.pipe(
+      //   filter(x=> !!x && x === this.sectionName)
+      // ).subscribe(()=>{
+      //   this.state = 'closed';
+      // })
+    ]
   }
+
   toggleCollapse = () : void => {
     this.state = this.isCollapsed
       ? 'opened'

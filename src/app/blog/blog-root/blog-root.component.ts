@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MainBusService } from 'app/shared/mainBusLine/main-bus.service';
 
 @Component({
   selector: 'app-blog-root',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BlogRootComponent implements OnInit {
 
-  constructor() { }
+  constructor(private mainControl: MainBusService) {
+    this.mainControl.getPostsSubject.next();
+  }
 
   ngOnInit(): void {
   }
